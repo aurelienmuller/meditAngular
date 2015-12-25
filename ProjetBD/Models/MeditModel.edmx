@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBIG3B4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="idEmploi" />
+          </Key>
+          <Property Name="idEmploi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateEntree" Type="date" Nullable="false" />
+          <Property Name="dateSortie" Type="date" />
+          <Property Name="soumis" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="codeProfession" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numeroEntreprise" />
+          </Key>
+          <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="denomination" Type="varchar" MaxLength="52" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="numtel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nbTravailleursSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="nbTravailleursNonSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipeMed">
+          <Key>
+            <PropertyRef Name="idEquipe" />
+          </Key>
+          <Property Name="idEquipe" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idAssistante1" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="idAssistante2" Type="varchar" MaxLength="8" />
+          <Property Name="idLieu1" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idLieu2" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idLieu3" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="interlocuteur">
+          <Key>
+            <PropertyRef Name="numeroEntreprise" />
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Langues">
+          <Key>
+            <PropertyRef Name="codeLangue" />
+          </Key>
+          <Property Name="codeLangue" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lieu">
+          <Key>
+            <PropertyRef Name="idLieu" />
+          </Key>
+          <Property Name="idLieu" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="supplement" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="numTel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="52" Nullable="false" />
+          <Property Name="numDossier" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="typePersonne" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="codeProfession" />
+          </Key>
+          <Property Name="codeProfession" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Secteur">
+          <Key>
+            <PropertyRef Name="codeSecteur" />
+          </Key>
+          <Property Name="codeSecteur" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="denom" Type="char" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tradTravail">
+          <Key>
+            <PropertyRef Name="idTradTravail" />
+          </Key>
+          <Property Name="idTradTravail" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="traduction" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codeProfession" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="codeLangue" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FKaffectation_FK">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKconcerne_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="codeProfession" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="codeProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKint_Ent">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="interlocuteur" Type="Self.interlocuteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numeroEntreprise" />
+            </Principal>
+            <Dependent Role="interlocuteur">
+              <PropertyRef Name="numeroEntreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKint_Per_FK">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="interlocuteur" Type="Self.interlocuteur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="interlocuteur">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKtra_Lan_FK">
+          <End Role="Langues" Type="Self.Langues" Multiplicity="1" />
+          <End Role="tradTravail" Type="Self.tradTravail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="tradTravail">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKtra_Pro_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="tradTravail" Type="Self.tradTravail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="codeProfession" />
+            </Principal>
+            <Dependent Role="tradTravail">
+              <PropertyRef Name="codeProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKtravail_FK">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numeroEntreprise" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="numeroEntreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIG3B4ModelStoreContainer">
+          <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="EquipeMed" EntityType="Self.EquipeMed" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="interlocuteur" EntityType="Self.interlocuteur" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Langues" EntityType="Self.Langues" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Lieu" EntityType="Self.Lieu" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Profession" EntityType="Self.Profession" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="Secteur" EntityType="Self.Secteur" Schema="BD" store:Type="Tables" />
+          <EntitySet Name="tradTravail" EntityType="Self.tradTravail" Schema="BD" store:Type="Tables" />
+          <AssociationSet Name="FKaffectation_FK" Association="Self.FKaffectation_FK">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="FKconcerne_FK" Association="Self.FKconcerne_FK">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="FKint_Ent" Association="Self.FKint_Ent">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="interlocuteur" EntitySet="interlocuteur" />
+          </AssociationSet>
+          <AssociationSet Name="FKint_Per_FK" Association="Self.FKint_Per_FK">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="interlocuteur" EntitySet="interlocuteur" />
+          </AssociationSet>
+          <AssociationSet Name="FKtra_Lan_FK" Association="Self.FKtra_Lan_FK">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="tradTravail" EntitySet="tradTravail" />
+          </AssociationSet>
+          <AssociationSet Name="FKtra_Pro_FK" Association="Self.FKtra_Pro_FK">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="tradTravail" EntitySet="tradTravail" />
+          </AssociationSet>
+          <AssociationSet Name="FKtravail_FK" Association="Self.FKtravail_FK">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBIG3B4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numeroEntreprise" />
+          </Key>
+          <Property Name="numeroEntreprise" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="denomination" Type="String" MaxLength="52" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numtel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nbTravailleursSoumis" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="nbTravailleursNonSoumis" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Personnes" Relationship="Self.interlocuteur" FromRole="Entreprise" ToRole="Personne" />
+          <NavigationProperty Name="Emplois" Relationship="DBIG3B4Model.FKtravail_FK" FromRole="Entreprise" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="EquipeMed">
+          <Key>
+            <PropertyRef Name="idEquipe" />
+          </Key>
+          <Property Name="idEquipe" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idAssistante1" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idAssistante2" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="idLieu1" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idLieu2" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="idLieu3" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="codeLangue" />
+          </Key>
+          <Property Name="codeLangue" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tradTravails" Relationship="Self.FKtra_Lan_FK" FromRole="Langues" ToRole="tradTravail" />
+        </EntityType>
+        <EntityType Name="Lieu">
+          <Key>
+            <PropertyRef Name="idLieu" />
+          </Key>
+          <Property Name="idLieu" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="supplement" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="idPersonne" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="52" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numDossier" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="typePersonne" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Entreprises" Relationship="Self.interlocuteur" FromRole="Personne" ToRole="Entreprise" />
+          <NavigationProperty Name="Emplois" Relationship="DBIG3B4Model.FKaffectation_FK" FromRole="Personne" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="codeProfession" />
+          </Key>
+          <Property Name="codeProfession" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <NavigationProperty Name="tradTravails" Relationship="Self.FKtra_Pro_FK" FromRole="Profession" ToRole="tradTravail" />
+          <NavigationProperty Name="Emplois" Relationship="DBIG3B4Model.FKconcerne_FK" FromRole="Profession" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="Secteur">
+          <Key>
+            <PropertyRef Name="codeSecteur" />
+          </Key>
+          <Property Name="codeSecteur" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="denom" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tradTravail">
+          <Key>
+            <PropertyRef Name="idTradTravail" />
+          </Key>
+          <Property Name="idTradTravail" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="traduction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codeProfession" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="codeLangue" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="Self.FKtra_Lan_FK" FromRole="tradTravail" ToRole="Langues" />
+          <NavigationProperty Name="Profession" Relationship="Self.FKtra_Pro_FK" FromRole="tradTravail" ToRole="Profession" />
+        </EntityType>
+        <Association Name="FKtra_Lan_FK">
+          <End Role="Langues" Type="Self.Langue" Multiplicity="1" />
+          <End Role="tradTravail" Type="Self.tradTravail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="tradTravail">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKtra_Pro_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="tradTravail" Type="Self.tradTravail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="codeProfession" />
+            </Principal>
+            <Dependent Role="tradTravail">
+              <PropertyRef Name="codeProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="interlocuteur">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <End Role="Personne" Type="Self.Personne" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBIG3B4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Entreprises" EntityType="Self.Entreprise" />
+          <EntitySet Name="EquipeMeds" EntityType="Self.EquipeMed" />
+          <EntitySet Name="Langues" EntityType="Self.Langue" />
+          <EntitySet Name="Lieux" EntityType="Self.Lieu" />
+          <EntitySet Name="Personnes" EntityType="Self.Personne" />
+          <EntitySet Name="Professions" EntityType="Self.Profession" />
+          <EntitySet Name="Secteurs" EntityType="Self.Secteur" />
+          <EntitySet Name="tradTravails" EntityType="Self.tradTravail" />
+          <AssociationSet Name="FKtra_Lan_FK" Association="Self.FKtra_Lan_FK">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="tradTravail" EntitySet="tradTravails" />
+          </AssociationSet>
+          <AssociationSet Name="FKtra_Pro_FK" Association="Self.FKtra_Pro_FK">
+            <End Role="Profession" EntitySet="Professions" />
+            <End Role="tradTravail" EntitySet="tradTravails" />
+          </AssociationSet>
+          <AssociationSet Name="interlocuteur" Association="Self.interlocuteur">
+            <End Role="Entreprise" EntitySet="Entreprises" />
+            <End Role="Personne" EntitySet="Personnes" />
+          </AssociationSet>
+          <EntitySet Name="Emplois" EntityType="DBIG3B4Model.Emploi" />
+          <AssociationSet Name="FKaffectation_FK" Association="DBIG3B4Model.FKaffectation_FK">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+          <AssociationSet Name="FKconcerne_FK" Association="DBIG3B4Model.FKconcerne_FK">
+            <End Role="Profession" EntitySet="Professions" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+          <AssociationSet Name="FKtravail_FK" Association="DBIG3B4Model.FKtravail_FK">
+            <End Role="Entreprise" EntitySet="Entreprises" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="idEmploi" />
+          </Key>
+          <Property Name="idEmploi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateEntree" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateSortie" Type="DateTime" Precision="0" />
+          <Property Name="soumis" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="numeroEntreprise" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+          <Property Name="codeProfession" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+          <Property Name="idPersonne" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+          <NavigationProperty Name="Personne" Relationship="DBIG3B4Model.FKaffectation_FK" FromRole="Emploi" ToRole="Personne" />
+          <NavigationProperty Name="Profession" Relationship="DBIG3B4Model.FKconcerne_FK" FromRole="Emploi" ToRole="Profession" />
+          <NavigationProperty Name="Entreprise" Relationship="DBIG3B4Model.FKtravail_FK" FromRole="Emploi" ToRole="Entreprise" />
+        </EntityType>
+        <Association Name="FKaffectation_FK">
+          <End Type="DBIG3B4Model.Personne" Role="Personne" Multiplicity="1" />
+          <End Type="DBIG3B4Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKconcerne_FK">
+          <End Type="DBIG3B4Model.Profession" Role="Profession" Multiplicity="1" />
+          <End Type="DBIG3B4Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="codeProfession" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="codeProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKtravail_FK">
+          <End Type="DBIG3B4Model.Entreprise" Role="Entreprise" Multiplicity="1" />
+          <End Type="DBIG3B4Model.Emploi" Role="Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numeroEntreprise" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="numeroEntreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities">
+          <EntitySetMapping Name="Entreprises">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+                <ScalarProperty Name="denomination" ColumnName="denomination" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="numtel" ColumnName="numtel" />
+                <ScalarProperty Name="nbTravailleursSoumis" ColumnName="nbTravailleursSoumis" />
+                <ScalarProperty Name="nbTravailleursNonSoumis" ColumnName="nbTravailleursNonSoumis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipeMeds">
+            <EntityTypeMapping TypeName="DBIG3B4Model.EquipeMed">
+              <MappingFragment StoreEntitySet="EquipeMed">
+                <ScalarProperty Name="idEquipe" ColumnName="idEquipe" />
+                <ScalarProperty Name="idAssistante1" ColumnName="idAssistante1" />
+                <ScalarProperty Name="idAssistante2" ColumnName="idAssistante2" />
+                <ScalarProperty Name="idLieu1" ColumnName="idLieu1" />
+                <ScalarProperty Name="idLieu2" ColumnName="idLieu2" />
+                <ScalarProperty Name="idLieu3" ColumnName="idLieu3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Langues">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Langue">
+              <MappingFragment StoreEntitySet="Langues">
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lieux">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Lieu">
+              <MappingFragment StoreEntitySet="Lieu">
+                <ScalarProperty Name="idLieu" ColumnName="idLieu" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="supplement" ColumnName="supplement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnes">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Personne">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="numTel" ColumnName="numTel" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="numDossier" ColumnName="numDossier" />
+                <ScalarProperty Name="typePersonne" ColumnName="typePersonne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professions">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Profession">
+              <MappingFragment StoreEntitySet="Profession">
+                <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Secteurs">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Secteur">
+              <MappingFragment StoreEntitySet="Secteur">
+                <ScalarProperty Name="codeSecteur" ColumnName="codeSecteur" />
+                <ScalarProperty Name="denom" ColumnName="denom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tradTravails">
+            <EntityTypeMapping TypeName="DBIG3B4Model.tradTravail">
+              <MappingFragment StoreEntitySet="tradTravail">
+                <ScalarProperty Name="idTradTravail" ColumnName="idTradTravail" />
+                <ScalarProperty Name="traduction" ColumnName="traduction" />
+                <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="interlocuteur" TypeName="DBIG3B4Model.interlocuteur" StoreEntitySet="interlocuteur">
+            <EndProperty Name="Entreprise">
+              <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+            </EndProperty>
+            <EndProperty Name="Personne">
+              <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Emplois">
+            <EntityTypeMapping TypeName="DBIG3B4Model.Emploi">
+              <MappingFragment StoreEntitySet="Emploi">
+                <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+                <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+                <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+                <ScalarProperty Name="soumis" ColumnName="soumis" />
+                <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+                <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+                <ScalarProperty Name="idEmploi" ColumnName="idEmploi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities">
+    <EntitySetMapping Name="Entreprises">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Entreprise">
+        <MappingFragment StoreEntitySet="Entreprise">
+          <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+          <ScalarProperty Name="denomination" ColumnName="denomination" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="numtel" ColumnName="numtel" />
+          <ScalarProperty Name="nbTravailleursSoumis" ColumnName="nbTravailleursSoumis" />
+          <ScalarProperty Name="nbTravailleursNonSoumis" ColumnName="nbTravailleursNonSoumis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipeMeds">
+      <EntityTypeMapping TypeName="DBIG3B4Model.EquipeMed">
+        <MappingFragment StoreEntitySet="EquipeMed">
+          <ScalarProperty Name="idEquipe" ColumnName="idEquipe" />
+          <ScalarProperty Name="idAssistante1" ColumnName="idAssistante1" />
+          <ScalarProperty Name="idAssistante2" ColumnName="idAssistante2" />
+          <ScalarProperty Name="idLieu1" ColumnName="idLieu1" />
+          <ScalarProperty Name="idLieu2" ColumnName="idLieu2" />
+          <ScalarProperty Name="idLieu3" ColumnName="idLieu3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Langues">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Langue">
+        <MappingFragment StoreEntitySet="Langues">
+          <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lieux">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Lieu">
+        <MappingFragment StoreEntitySet="Lieu">
+          <ScalarProperty Name="idLieu" ColumnName="idLieu" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="supplement" ColumnName="supplement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personnes">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Personne">
+        <MappingFragment StoreEntitySet="Personne">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="numTel" ColumnName="numTel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="numDossier" ColumnName="numDossier" />
+          <ScalarProperty Name="typePersonne" ColumnName="typePersonne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professions">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Profession">
+        <MappingFragment StoreEntitySet="Profession">
+          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Secteurs">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Secteur">
+        <MappingFragment StoreEntitySet="Secteur">
+          <ScalarProperty Name="codeSecteur" ColumnName="codeSecteur" />
+          <ScalarProperty Name="denom" ColumnName="denom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tradTravails">
+      <EntityTypeMapping TypeName="DBIG3B4Model.tradTravail">
+        <MappingFragment StoreEntitySet="tradTravail">
+          <ScalarProperty Name="idTradTravail" ColumnName="idTradTravail" />
+          <ScalarProperty Name="traduction" ColumnName="traduction" />
+          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+          <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="interlocuteur" TypeName="DBIG3B4Model.interlocuteur" StoreEntitySet="interlocuteur">
+      <EndProperty Name="Entreprise">
+        <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+      </EndProperty>
+      <EndProperty Name="Personne">
+        <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Emplois">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Emploi">
+        <MappingFragment StoreEntitySet="Emploi">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+          <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+          <ScalarProperty Name="soumis" ColumnName="soumis" />
+          <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+          <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+          <ScalarProperty Name="idEmploi" ColumnName="idEmploi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

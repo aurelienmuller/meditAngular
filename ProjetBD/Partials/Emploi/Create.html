@@ -1,0 +1,87 @@
+﻿<div class="row">
+    <h1>Nouvel emploi</h1>
+    <form name="creationEmploiForm" ng-controller="EmploisCtrl as emploisCtrl">
+
+        <!-- Entreprise -->
+        <div class="form-group">
+            <label for="entreprise">Entreprise:</label>
+            <!--<input type="text" class="form-control" id="entreprise" ng-model="NomEntreprise">-->
+            <select id="entrepriseSelect" name="entrepriseSelect" class="form-control" ng-model="emploi.numeroEntreprise" required>
+                <option selected="selected" disabled="disabled" value="">Sélectionnez une entreprise</option>
+                <option ng-repeat="entreprise in entreprises" value="{{entreprise.numeroEntreprise}}">
+                    {{entreprise.denomination}}
+                </option>
+            </select>
+        </div>
+
+        <!-- Travailleur -->
+        <div class="form-group">
+            <label for="travailleur">Travailleur:</label>
+            <select id="personneSelect" name="personSelect" class="form-control" ng-model="emploi.idPersonne" required>
+                <option selected="selected" disabled="disabled" value="">Sélectionnez un travailleur</option>
+                <option ng-repeat="personne in personnes" value="{{personne.idPersonne}}" required>
+                    {{personne.lastName}} {{personne.name}} (id : {{personne.idPersonne}})
+                </option>
+            </select>
+        </div>
+
+        <!-- Profession -->
+        <div class="form-group">
+            <label for="profession">Profession:</label>
+            <select id="professionSelect" name="professionSelect" class="form-control" ng-model="emploi.codeProfession" required>
+                <option selected="selected" disabled="disabled" value="">Sélectionnez une profession</option>
+                <option ng-repeat="profession in professions" value="{{profession.codeProfession}}" required>
+                    {{profession.traduction}}
+                </option>
+            </select>
+        </div>
+
+        <!-- Soumis -->
+        <div class="form-group">
+        <label>
+            <input type="radio" name="butSoumis" value="1" ng-model="emploi.soumis">
+            Soumis
+        </label>
+        <label>
+            <input type="radio" name="butSoumis" value="0" ng-model="emploi.soumis">
+            Non soumis
+        </label>
+        </div>
+
+        <!--
+        <div class="form-group">
+            <label for="risque">Risque:</label>
+            <select id="risqueSelect" name="risqueSelect" class="form-control">
+                <option ng-repeat="risque in risques" value="{{risque.codeRisque}}">
+                    {{risque.traduction}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="examen">Examen:</label>
+            <select id="examenSelect" name="examenSelect" class="form-control">
+                <option ng-repeat="examen in examens" value="{{examen.codeExamen}}">
+                    {{examen.Libelle}}
+                </option>
+            </select>
+        </div>-->
+
+        <!-- date -->
+        <div class="form-group">
+            <label for="dateDeb">Date de début:</label>
+            <input type="date" id="dateDeb" name="dateDeb"  class="form-control" ng-model="emploi.dateEntree"
+                   placeholder="yyyy-MM-dd" required />
+         </div>
+       
+
+        <div class="form-group">
+            <label for="dateDeb">Date de fin:</label>
+            <input type="date" id="dateFin" name="dateFin" class="form-control" ng-model="emploi.dateSortie"
+                   placeholder="yyyy-MM-dd" min="{{emploi.dateEntree | date:'yyyy-MM-dd'}}" />
+        </div>
+
+            <button type="submit" class="btn btn-success" ng-click="creationEmploiForm.$valid && Save()">Sauvegarder</button>
+        </form>
+    
+</div>
