@@ -13,10 +13,10 @@ namespace ProjetBD.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBIG3B4Entities : DbContext
+    public partial class DBIG3B4Entities1 : DbContext
     {
-        public DBIG3B4Entities()
-            : base("name=DBIG3B4Entities")
+        public DBIG3B4Entities1()
+            : base("name=DBIG3B4Entities1")
         {
         }
     
@@ -25,14 +25,11 @@ namespace ProjetBD.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Emploi> Emplois { get; set; }
         public virtual DbSet<Entreprise> Entreprises { get; set; }
-        public virtual DbSet<EquipeMed> EquipeMeds { get; set; }
         public virtual DbSet<Langue> Langues { get; set; }
-        public virtual DbSet<Lieu> Lieux { get; set; }
         public virtual DbSet<Personne> Personnes { get; set; }
         public virtual DbSet<Profession> Professions { get; set; }
-        public virtual DbSet<Secteur> Secteurs { get; set; }
         public virtual DbSet<tradTravail> tradTravails { get; set; }
-        public virtual DbSet<Emploi> Emplois { get; set; }
     }
 }

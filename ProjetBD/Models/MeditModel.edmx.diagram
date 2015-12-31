@@ -4,22 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1da9d6846fd848b48c90551fd8275afd" Name="Diagram1">
+      <Diagram DiagramId="22e7395805d748168462987095a9d3db" Name="Diagram1">
+        <EntityTypeShape EntityType="DBIG3B4Model.Emploi" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBIG3B4Model.Entreprise" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.EquipeMed" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBIG3B4Model.Langue" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Lieu" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBIG3B4Model.Personne" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Profession" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Secteur" Width="1.5" PointX="7.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3B4Model.Profession" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBIG3B4Model.tradTravail" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="DBIG3B4Model.FKaffectation_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3B4Model.FKconcerne_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3B4Model.FKtravail_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBIG3B4Model.FKtra_Lan_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBIG3B4Model.FKtra_Pro_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBIG3B4Model.interlocuteur" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Emploi" Width="1.5" PointX="5.25" PointY="5.125" />
-        <AssociationConnector Association="DBIG3B4Model.FKaffectation_FK" />
-        <AssociationConnector Association="DBIG3B4Model.FKconcerne_FK" />
-        <AssociationConnector Association="DBIG3B4Model.FKtravail_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

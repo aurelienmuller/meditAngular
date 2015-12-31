@@ -6,6 +6,10 @@
             templateUrl: 'partials/Emploi/Create.html',
             controller: 'EmploisCtrl'
         })
+        .when('/trav', {
+            templateUrl: 'partials/Travailleur/Create.html',
+            controller: 'TravailleursCtrl'
+        })
         .otherwise({ redirectTo: '/' });
     }]);
     app.controller('EmploisCtrl', function ($scope, $http) {
@@ -13,31 +17,19 @@
         $http.get("api/Entreprises").success(function (data, status, headers, config) {
             $scope.entreprises = data;
         }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
+            console.log(status);
         });
 
         $http.get("api/Personnes").success(function (data, status, headers, config) {
             $scope.personnes = data;
         }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
+            console.log(status);
         });
         
         $http.get("api/tradTravails").success(function (data, status, headers, config) {
             $scope.professions = data;
         }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
-        });
-
-        $http.get("api/tradRisques").success(function (data, status, headers, config) {
-            $scope.risques = data;
-        }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
-        });
-
-        $http.get("api/TypeExamen").success(function (data, status, headers, config) {
-            $scope.examens = data;
-        }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
+            console.log(status);
         });
 
         $scope.emploi = {
@@ -65,5 +57,35 @@
 
 
     });
+    app.controller('TravailleursCtrl', function ($scope, $http) {
 
+        $scope.personne = {
+            name: null,
+            lastName: null,
+            adresse: null,
+            numTel: null,
+            email: null,
+            numDossier: null,
+            typePersonne: 'T'
+        };
 
+        /*$http.get("api/Entreprises").success(function (data, status, headers, config) {
+            $scope.entreprises = data;
+        }).error(function (data, status, headers, config) {
+            console.log("something went wrong!!!");
+        });*/
+
+        $scope.Save = function () {
+            var personneJSON = angular.toJson($scope.personne);
+            
+            $http.post('api/Personnes', personneJSON)
+                .success(function (data, status, headers, config) {
+                    alert("Nouveau Travailleur ajouté");
+                    console.log(data);
+                })
+                .error(function (data, status, header, config) {
+                    alert("Une erreur est survenue");
+                    console.log(data);
+                });
+        }
+    });

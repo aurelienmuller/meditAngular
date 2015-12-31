@@ -14,7 +14,7 @@ namespace ProjetBD.Controllers
 {
     public class EmploisController : ApiController
     {
-        private DBIG3B4Entities db = new DBIG3B4Entities();
+        private DBIG3B4Entities1 db = new DBIG3B4Entities1();
 
         // GET: api/Emplois
         public IQueryable<Emploi> GetEmplois()

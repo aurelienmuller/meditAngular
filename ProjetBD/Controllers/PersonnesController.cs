@@ -14,7 +14,7 @@ namespace ProjetBD.Controllers
 {
     public class PersonnesController : ApiController
     {
-        private DBIG3B4Entities db = new DBIG3B4Entities();
+        private DBIG3B4Entities1 db = new DBIG3B4Entities1();
 
         // GET: api/Personnes
         public IQueryable<Personne> GetPersonnes()
@@ -24,7 +24,7 @@ namespace ProjetBD.Controllers
 
         // GET: api/Personnes/5
         [ResponseType(typeof(Personne))]
-        public IHttpActionResult GetPersonne(decimal id)
+        public IHttpActionResult GetPersonne(int id)
         {
             Personne personne = db.Personnes.Find(id);
             if (personne == null)
@@ -37,7 +37,7 @@ namespace ProjetBD.Controllers
 
         // PUT: api/Personnes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPersonne(decimal id, Personne personne)
+        public IHttpActionResult PutPersonne(int id, Personne personne)
         {
             if (!ModelState.IsValid)
             {
@@ -80,29 +80,14 @@ namespace ProjetBD.Controllers
             }
 
             db.Personnes.Add(personne);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (PersonneExists(personne.idPersonne))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = personne.idPersonne }, personne);
         }
 
         // DELETE: api/Personnes/5
         [ResponseType(typeof(Personne))]
-        public IHttpActionResult DeletePersonne(decimal id)
+        public IHttpActionResult DeletePersonne(int id)
         {
             Personne personne = db.Personnes.Find(id);
             if (personne == null)
@@ -125,7 +110,7 @@ namespace ProjetBD.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PersonneExists(decimal id)
+        private bool PersonneExists(int id)
         {
             return db.Personnes.Count(e => e.idPersonne == id) > 0;
         }

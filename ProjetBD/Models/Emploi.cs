@@ -20,7 +20,7 @@ namespace ProjetBD.Models
         public string soumis { get; set; }
         public decimal numeroEntreprise { get; set; }
         public decimal codeProfession { get; set; }
-        public decimal idPersonne { get; set; }
+        public int idPersonne { get; set; }
     
         public virtual Personne Personne { get; set; }
         public virtual Profession Profession { get; set; }

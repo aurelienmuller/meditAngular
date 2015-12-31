@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <h1>Nouveau travailleur</h1>
+    <form name="creationTravailleurForm" ng-controller="TravailleursCtrl as travCtrl">
+
+        <!-- Prénom -->
+        <div class="form-group">
+            <label for="prenom">Prénom:</label>
+            <input type="text" name="inputFirstName" class="form-control" ng-model="personne.name" required/>
+        </div>
+
+
+        <!-- Nom -->
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" name="inputName" class="form-control" ng-model="personne.lastName" required />
+        </div>
+
+        <!-- Adresse -->
+        <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" name="inputAdresse" class="form-control" ng-model="personne.adresse" required />
+        </div>
+
+        <!-- Téléphone -->
+        <div class="form-group">
+            <label for="tel">Téléphone:</label>
+            <input type="tel" name="inputTel" pattern="[0-9]*" class="form-control" ng-model="personne.numTel" required />
+        </div>
+
+        <!-- email -->
+        <div class="form-group">
+            <label for="email">email:</label>
+            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="inputMail" class="form-control" ng-model="personne.email" required />
+        </div>
+
+        <!-- Numéro dossier -->
+        <div class="form-group">
+            <label for="numDossier">Numéro de dossier (facultatif):</label>
+            <input type="number" min="1" max="999999999999" name="inputNumDossier" class="form-control" ng-model="personne.numDossier" />
+        </div>
+
+        <!-- Personne de contact?
+        <div class="form-group">
+            <label for="personneContact">Personne de contact pour:</label>
+            <select id="entrepriseSelect" name="entrepriseSelect" class="form-control" ng-model="numeroEntreprise" required>
+                <option selected="selected" value=null>Aucune</option>
+                <option ng-repeat="entreprise in entreprises" value="{{entreprise.numeroEntreprise}}">
+                    {{entreprise.denomination}}
+                </option>
+            </select>
+        </div>-->
+
+        
+
+        <button type="submit" class="btn btn-success" ng-click="creationTravailleurForm.$valid && Save()">Sauvegarder</button>
+    </form>
+
+</div>

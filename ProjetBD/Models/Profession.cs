@@ -17,15 +17,16 @@ namespace ProjetBD.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Profession()
         {
-            this.tradTravails = new HashSet<tradTravail>();
             this.Emplois = new HashSet<Emploi>();
+            this.tradTravails = new HashSet<tradTravail>();
         }
     
         public decimal codeProfession { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tradTravail> tradTravails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emploi> Emplois { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tradTravail> tradTravails { get; set; }
     }
 }

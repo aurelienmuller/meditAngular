@@ -14,7 +14,7 @@ namespace ProjetBD.Controllers
 {
     public class EntreprisesController : ApiController
     {
-        private DBIG3B4Entities db = new DBIG3B4Entities();
+        private DBIG3B4Entities1 db = new DBIG3B4Entities1();
 
         // GET: api/Entreprises
         public IQueryable<Entreprise> GetEntreprises()

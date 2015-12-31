@@ -10,7 +10,7 @@
     <Property Name="soumis" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
     <Property Name="codeProfession" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="idPersonne" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Entreprise">
     <Key>
@@ -23,24 +23,13 @@
     <Property Name="nbTravailleursSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
     <Property Name="nbTravailleursNonSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
   </EntityType>
-  <EntityType Name="EquipeMed">
-    <Key>
-      <PropertyRef Name="idEquipe" />
-    </Key>
-    <Property Name="idEquipe" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idAssistante1" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="idAssistante2" Type="varchar" MaxLength="8" />
-    <Property Name="idLieu1" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idLieu2" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idLieu3" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-  </EntityType>
   <EntityType Name="interlocuteur">
     <Key>
       <PropertyRef Name="numeroEntreprise" />
       <PropertyRef Name="idPersonne" />
     </Key>
     <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="idPersonne" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Langues">
     <Key>
@@ -49,19 +38,11 @@
     <Property Name="codeLangue" Type="numeric" Precision="8" Scale="0" Nullable="false" />
     <Property Name="libelle" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
-  <EntityType Name="Lieu">
-    <Key>
-      <PropertyRef Name="idLieu" />
-    </Key>
-    <Property Name="idLieu" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="type" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="supplement" Type="numeric" Precision="4" Scale="2" Nullable="false" />
-  </EntityType>
   <EntityType Name="Personne">
     <Key>
       <PropertyRef Name="idPersonne" />
     </Key>
-    <Property Name="idPersonne" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="idPersonne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="lastName" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="adresse" Type="varchar" MaxLength="128" Nullable="false" />
@@ -75,13 +56,7 @@
       <PropertyRef Name="codeProfession" />
     </Key>
     <Property Name="codeProfession" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Secteur">
-    <Key>
-      <PropertyRef Name="codeSecteur" />
-    </Key>
-    <Property Name="codeSecteur" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="denom" Type="char" MaxLength="128" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tradTravail">
     <Key>
@@ -179,13 +154,10 @@
   <EntityContainer Name="DBIG3B4ModelStoreContainer">
     <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="BD" store:Type="Tables" />
-    <EntitySet Name="EquipeMed" EntityType="Self.EquipeMed" Schema="BD" store:Type="Tables" />
     <EntitySet Name="interlocuteur" EntityType="Self.interlocuteur" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Langues" EntityType="Self.Langues" Schema="BD" store:Type="Tables" />
-    <EntitySet Name="Lieu" EntityType="Self.Lieu" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Personne" EntityType="Self.Personne" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Profession" EntityType="Self.Profession" Schema="BD" store:Type="Tables" />
-    <EntitySet Name="Secteur" EntityType="Self.Secteur" Schema="BD" store:Type="Tables" />
     <EntitySet Name="tradTravail" EntityType="Self.tradTravail" Schema="BD" store:Type="Tables" />
     <AssociationSet Name="FKaffectation_FK" Association="Self.FKaffectation_FK">
       <End Role="Personne" EntitySet="Personne" />

@@ -17,11 +17,11 @@ namespace ProjetBD.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Personne()
         {
-            this.Entreprises = new HashSet<Entreprise>();
             this.Emplois = new HashSet<Emploi>();
+            this.Entreprises = new HashSet<Entreprise>();
         }
     
-        public decimal idPersonne { get; set; }
+        public int idPersonne { get; set; }
         public string name { get; set; }
         public string lastName { get; set; }
         public string adresse { get; set; }
@@ -31,8 +31,8 @@ namespace ProjetBD.Models
         public string typePersonne { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Entreprise> Entreprises { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emploi> Emplois { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Entreprise> Entreprises { get; set; }
     }
 }

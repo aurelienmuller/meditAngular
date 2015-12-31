@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities">
+  <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities1">
+    <EntitySetMapping Name="Emplois">
+      <EntityTypeMapping TypeName="DBIG3B4Model.Emploi">
+        <MappingFragment StoreEntitySet="Emploi">
+          <ScalarProperty Name="idEmploi" ColumnName="idEmploi" />
+          <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+          <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+          <ScalarProperty Name="soumis" ColumnName="soumis" />
+          <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
+          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Entreprises">
       <EntityTypeMapping TypeName="DBIG3B4Model.Entreprise">
         <MappingFragment StoreEntitySet="Entreprise">
@@ -13,32 +26,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EquipeMeds">
-      <EntityTypeMapping TypeName="DBIG3B4Model.EquipeMed">
-        <MappingFragment StoreEntitySet="EquipeMed">
-          <ScalarProperty Name="idEquipe" ColumnName="idEquipe" />
-          <ScalarProperty Name="idAssistante1" ColumnName="idAssistante1" />
-          <ScalarProperty Name="idAssistante2" ColumnName="idAssistante2" />
-          <ScalarProperty Name="idLieu1" ColumnName="idLieu1" />
-          <ScalarProperty Name="idLieu2" ColumnName="idLieu2" />
-          <ScalarProperty Name="idLieu3" ColumnName="idLieu3" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Langues">
       <EntityTypeMapping TypeName="DBIG3B4Model.Langue">
         <MappingFragment StoreEntitySet="Langues">
           <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
           <ScalarProperty Name="libelle" ColumnName="libelle" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Lieux">
-      <EntityTypeMapping TypeName="DBIG3B4Model.Lieu">
-        <MappingFragment StoreEntitySet="Lieu">
-          <ScalarProperty Name="idLieu" ColumnName="idLieu" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="supplement" ColumnName="supplement" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,14 +52,7 @@
       <EntityTypeMapping TypeName="DBIG3B4Model.Profession">
         <MappingFragment StoreEntitySet="Profession">
           <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Secteurs">
-      <EntityTypeMapping TypeName="DBIG3B4Model.Secteur">
-        <MappingFragment StoreEntitySet="Secteur">
-          <ScalarProperty Name="codeSecteur" ColumnName="codeSecteur" />
-          <ScalarProperty Name="denom" ColumnName="denom" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -89,18 +74,5 @@
         <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Emplois">
-      <EntityTypeMapping TypeName="DBIG3B4Model.Emploi">
-        <MappingFragment StoreEntitySet="Emploi">
-          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
-          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
-          <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
-          <ScalarProperty Name="soumis" ColumnName="soumis" />
-          <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
-          <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
-          <ScalarProperty Name="idEmploi" ColumnName="idEmploi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

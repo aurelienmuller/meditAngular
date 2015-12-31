@@ -121,6 +121,7 @@
       <LastGenOutput>MeditModel.cs</LastGenOutput>
     </Content>
     <Content Include="Partials\Emploi\Create.html" />
+    <Content Include="Partials\Travailleur\Create.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -135,6 +136,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\datetimepicker.css.map" />
+    <EntityDeploy Include="Models\MeditModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MeditModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MeditModel.edmx.diagram">
+      <DependentUpon>MeditModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap-combobox.js" />
@@ -157,12 +165,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmploisController.cs" />
     <Compile Include="Controllers\EntreprisesController.cs" />
-    <Compile Include="Controllers\EquipeMedsController.cs" />
     <Compile Include="Controllers\LanguesController.cs" />
-    <Compile Include="Controllers\LieuxController.cs" />
     <Compile Include="Controllers\PersonnesController.cs" />
     <Compile Include="Controllers\ProfessionsController.cs" />
-    <Compile Include="Controllers\SecteursController.cs" />
     <Compile Include="Controllers\tradTravailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,13 +178,7 @@
     <Compile Include="Models\Entreprise.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EquipeMed.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Langue.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lieu.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MeditModel.Context.cs">
@@ -203,9 +202,6 @@
     <Compile Include="Models\Profession.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Secteur.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tradTravail.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
@@ -213,13 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\MeditModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MeditModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MeditModel.edmx.diagram">
-      <DependentUpon>MeditModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
