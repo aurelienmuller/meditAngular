@@ -120,6 +120,7 @@
       <DependentUpon>MeditModel.edmx</DependentUpon>
       <LastGenOutput>MeditModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Partials\Accueil\Accueil.html" />
     <Content Include="Partials\Emploi\Create.html" />
     <Content Include="Partials\Travailleur\Create.html" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -165,10 +166,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmploisController.cs" />
     <Compile Include="Controllers\EntreprisesController.cs" />
-    <Compile Include="Controllers\LanguesController.cs" />
     <Compile Include="Controllers\PersonnesController.cs" />
     <Compile Include="Controllers\ProfessionsController.cs" />
-    <Compile Include="Controllers\tradTravailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,9 +175,6 @@
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entreprise.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Langue.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MeditModel.Context.cs">
@@ -200,9 +196,6 @@
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profession.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tradTravail.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

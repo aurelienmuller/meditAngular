@@ -3,6 +3,9 @@
     function ($routeProvider) {
         $routeProvider
         .when('/', {
+            templateUrl: 'partials/Accueil/Accueil.html'
+        })
+        .when('/empl', {
             templateUrl: 'partials/Emploi/Create.html',
             controller: 'EmploisCtrl'
         })
@@ -26,7 +29,7 @@
             console.log(status);
         });
         
-        $http.get("api/tradTravails").success(function (data, status, headers, config) {
+        $http.get("api/Professions").success(function (data, status, headers, config) {
             $scope.professions = data;
         }).error(function (data, status, headers, config) {
             console.log(status);
@@ -69,15 +72,9 @@
             typePersonne: 'T'
         };
 
-        /*$http.get("api/Entreprises").success(function (data, status, headers, config) {
-            $scope.entreprises = data;
-        }).error(function (data, status, headers, config) {
-            console.log("something went wrong!!!");
-        });*/
 
         $scope.Save = function () {
             var personneJSON = angular.toJson($scope.personne);
-            
             $http.post('api/Personnes', personneJSON)
                 .success(function (data, status, headers, config) {
                     alert("Nouveau Travailleur ajouté");

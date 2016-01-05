@@ -26,14 +26,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Langues">
-      <EntityTypeMapping TypeName="DBIG3B4Model.Langue">
-        <MappingFragment StoreEntitySet="Langues">
-          <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
-          <ScalarProperty Name="libelle" ColumnName="libelle" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Personnes">
       <EntityTypeMapping TypeName="DBIG3B4Model.Personne">
         <MappingFragment StoreEntitySet="Personne">
@@ -53,16 +45,6 @@
         <MappingFragment StoreEntitySet="Profession">
           <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
           <ScalarProperty Name="description" ColumnName="description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tradTravails">
-      <EntityTypeMapping TypeName="DBIG3B4Model.tradTravail">
-        <MappingFragment StoreEntitySet="tradTravail">
-          <ScalarProperty Name="idTradTravail" ColumnName="idTradTravail" />
-          <ScalarProperty Name="traduction" ColumnName="traduction" />
-          <ScalarProperty Name="codeProfession" ColumnName="codeProfession" />
-          <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
