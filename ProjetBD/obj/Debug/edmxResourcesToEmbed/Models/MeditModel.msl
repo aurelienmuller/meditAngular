@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities1">
+  <EntityContainerMapping StorageEntityContainer="DBIG3B4ModelStoreContainer" CdmEntityContainer="DBIG3B4Entities3">
     <EntitySetMapping Name="Emplois">
       <EntityTypeMapping TypeName="DBIG3B4Model.Emploi">
         <MappingFragment StoreEntitySet="Emploi">
@@ -48,13 +48,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="interlocuteur" TypeName="DBIG3B4Model.interlocuteur" StoreEntitySet="interlocuteur">
-      <EndProperty Name="Entreprise">
-        <ScalarProperty Name="numeroEntreprise" ColumnName="numeroEntreprise" />
-      </EndProperty>
-      <EndProperty Name="Personne">
-        <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

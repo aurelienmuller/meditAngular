@@ -13,10 +13,10 @@ namespace ProjetBD.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBIG3B4Entities1 : DbContext
+    public partial class DBIG3B4Entities3 : DbContext
     {
-        public DBIG3B4Entities1()
-            : base("name=DBIG3B4Entities1")
+        public DBIG3B4Entities3()
+            : base("name=DBIG3B4Entities3")
         {
         }
     

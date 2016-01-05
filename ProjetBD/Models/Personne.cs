@@ -18,7 +18,6 @@ namespace ProjetBD.Models
         public Personne()
         {
             this.Emplois = new HashSet<Emploi>();
-            this.Entreprises = new HashSet<Entreprise>();
         }
     
         public int idPersonne { get; set; }
@@ -32,7 +31,5 @@ namespace ProjetBD.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emploi> Emplois { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Entreprise> Entreprises { get; set; }
     }
 }

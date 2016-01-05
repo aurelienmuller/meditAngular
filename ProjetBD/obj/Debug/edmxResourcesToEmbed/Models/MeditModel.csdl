@@ -26,7 +26,6 @@
     <Property Name="nbTravailleursSoumis" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
     <Property Name="nbTravailleursNonSoumis" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
     <NavigationProperty Name="Emplois" Relationship="Self.FKtravail_FK" FromRole="Entreprise" ToRole="Emploi" />
-    <NavigationProperty Name="Personnes" Relationship="Self.interlocuteur" FromRole="Entreprise" ToRole="Personne" />
   </EntityType>
   <EntityType Name="Personne">
     <Key>
@@ -41,7 +40,6 @@
     <Property Name="numDossier" Type="Decimal" Precision="12" Scale="0" />
     <Property Name="typePersonne" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Emplois" Relationship="Self.FKaffectation_FK" FromRole="Personne" ToRole="Emploi" />
-    <NavigationProperty Name="Entreprises" Relationship="Self.interlocuteur" FromRole="Personne" ToRole="Entreprise" />
   </EntityType>
   <EntityType Name="Profession">
     <Key>
@@ -87,11 +85,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="interlocuteur">
-    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
-    <End Role="Personne" Type="Self.Personne" Multiplicity="*" />
-  </Association>
-  <EntityContainer Name="DBIG3B4Entities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DBIG3B4Entities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Emplois" EntityType="Self.Emploi" />
     <EntitySet Name="Entreprises" EntityType="Self.Entreprise" />
     <EntitySet Name="Personnes" EntityType="Self.Personne" />
@@ -107,10 +101,6 @@
     <AssociationSet Name="FKtravail_FK" Association="Self.FKtravail_FK">
       <End Role="Entreprise" EntitySet="Entreprises" />
       <End Role="Emploi" EntitySet="Emplois" />
-    </AssociationSet>
-    <AssociationSet Name="interlocuteur" Association="Self.interlocuteur">
-      <End Role="Entreprise" EntitySet="Entreprises" />
-      <End Role="Personne" EntitySet="Personnes" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

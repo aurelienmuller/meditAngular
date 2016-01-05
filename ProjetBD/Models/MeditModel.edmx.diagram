@@ -4,15 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="22e7395805d748168462987095a9d3db" Name="Diagram1">
-        <EntityTypeShape EntityType="DBIG3B4Model.Emploi" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Entreprise" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Personne" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBIG3B4Model.Profession" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+      <Diagram DiagramId="930ae6142b5e46ab9a0b4356162bee3a" Name="Diagram1">
+        <EntityTypeShape EntityType="DBIG3B4Model.Emploi" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3B4Model.Entreprise" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3B4Model.Personne" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3B4Model.Profession" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
         <AssociationConnector Association="DBIG3B4Model.FKaffectation_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBIG3B4Model.FKconcerne_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBIG3B4Model.FKtravail_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="DBIG3B4Model.interlocuteur" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

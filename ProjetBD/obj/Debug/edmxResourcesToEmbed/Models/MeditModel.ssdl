@@ -23,14 +23,6 @@
     <Property Name="nbTravailleursSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
     <Property Name="nbTravailleursNonSoumis" Type="numeric" Precision="8" Scale="0" Nullable="false" />
   </EntityType>
-  <EntityType Name="interlocuteur">
-    <Key>
-      <PropertyRef Name="numeroEntreprise" />
-      <PropertyRef Name="idPersonne" />
-    </Key>
-    <Property Name="numeroEntreprise" Type="numeric" Precision="8" Scale="0" Nullable="false" />
-    <Property Name="idPersonne" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Personne">
     <Key>
       <PropertyRef Name="idPersonne" />
@@ -75,30 +67,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FKint_Ent">
-    <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
-    <End Role="interlocuteur" Type="Self.interlocuteur" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Entreprise">
-        <PropertyRef Name="numeroEntreprise" />
-      </Principal>
-      <Dependent Role="interlocuteur">
-        <PropertyRef Name="numeroEntreprise" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FKint_Per_FK">
-    <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
-    <End Role="interlocuteur" Type="Self.interlocuteur" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Personne">
-        <PropertyRef Name="idPersonne" />
-      </Principal>
-      <Dependent Role="interlocuteur">
-        <PropertyRef Name="idPersonne" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FKtravail_FK">
     <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
     <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
@@ -114,7 +82,6 @@
   <EntityContainer Name="DBIG3B4ModelStoreContainer">
     <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="BD" store:Type="Tables" />
-    <EntitySet Name="interlocuteur" EntityType="Self.interlocuteur" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Personne" EntityType="Self.Personne" Schema="BD" store:Type="Tables" />
     <EntitySet Name="Profession" EntityType="Self.Profession" Schema="BD" store:Type="Tables" />
     <AssociationSet Name="FKaffectation_FK" Association="Self.FKaffectation_FK">
@@ -124,14 +91,6 @@
     <AssociationSet Name="FKconcerne_FK" Association="Self.FKconcerne_FK">
       <End Role="Profession" EntitySet="Profession" />
       <End Role="Emploi" EntitySet="Emploi" />
-    </AssociationSet>
-    <AssociationSet Name="FKint_Ent" Association="Self.FKint_Ent">
-      <End Role="Entreprise" EntitySet="Entreprise" />
-      <End Role="interlocuteur" EntitySet="interlocuteur" />
-    </AssociationSet>
-    <AssociationSet Name="FKint_Per_FK" Association="Self.FKint_Per_FK">
-      <End Role="Personne" EntitySet="Personne" />
-      <End Role="interlocuteur" EntitySet="interlocuteur" />
     </AssociationSet>
     <AssociationSet Name="FKtravail_FK" Association="Self.FKtravail_FK">
       <End Role="Entreprise" EntitySet="Entreprise" />

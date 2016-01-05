@@ -18,7 +18,6 @@ namespace ProjetBD.Models
         public Entreprise()
         {
             this.Emplois = new HashSet<Emploi>();
-            this.Personnes = new HashSet<Personne>();
         }
     
         public decimal numeroEntreprise { get; set; }
@@ -30,7 +29,5 @@ namespace ProjetBD.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emploi> Emplois { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Personne> Personnes { get; set; }
     }
 }
