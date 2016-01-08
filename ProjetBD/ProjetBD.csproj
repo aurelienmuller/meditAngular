@@ -91,19 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-datepicker.css" />
-    <Content Include="Content\bootstrap-datepicker.min.css" />
-    <Content Include="Content\bootstrap-datepicker.standalone.css" />
-    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
-    <Content Include="Content\bootstrap-datepicker3.css" />
-    <Content Include="Content\bootstrap-datepicker3.min.css" />
-    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
-    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
-    <Content Include="Content\bootstrap-datetimepicker.css" />
-    <Content Include="Content\bootstrap-datetimepicker.min.css" />
-    <Content Include="Content\datetimepicker.css" />
     <Content Include="Index.html" />
-    <Content Include="Content\bootstrap-combobox.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -120,6 +108,7 @@
       <DependentUpon>MeditModel.edmx</DependentUpon>
       <LastGenOutput>MeditModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Partials\Accueil\Accueil.html" />
     <Content Include="Partials\Emploi\Create.html" />
     <Content Include="Partials\Travailleur\Create.html" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -135,7 +124,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\datetimepicker.css.map" />
     <EntityDeploy Include="Models\MeditModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MeditModel.Designer.cs</LastGenOutput>
@@ -145,30 +133,18 @@
     </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\bootstrap-combobox.js" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
-    <Content Include="Scripts\bootstrap-datepicker.min.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\datetimepicker.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmploisController.cs" />
     <Compile Include="Controllers\EntreprisesController.cs" />
-    <Compile Include="Controllers\LanguesController.cs" />
     <Compile Include="Controllers\PersonnesController.cs" />
     <Compile Include="Controllers\ProfessionsController.cs" />
-    <Compile Include="Controllers\tradTravailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,9 +152,6 @@
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entreprise.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Langue.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MeditModel.Context.cs">
@@ -200,9 +173,6 @@
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profession.cs">
-      <DependentUpon>MeditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tradTravail.cs">
       <DependentUpon>MeditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

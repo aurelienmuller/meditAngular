@@ -20,7 +20,7 @@
             <select id="personneSelect" name="personSelect" class="form-control" ng-model="emploi.idPersonne" required>
                 <option selected="selected" disabled="disabled" value="">Sélectionnez un travailleur</option>
                 <option ng-repeat="personne in personnes" value="{{personne.idPersonne}}" required>
-                    {{personne.lastName}} {{personne.name}} (id : {{personne.idPersonne}})
+                    {{personne.lastName}} {{personne.name}} ({{personne.email}})
                 </option>
             </select>
         </div>
@@ -31,7 +31,7 @@
             <select id="professionSelect" name="professionSelect" class="form-control" ng-model="emploi.codeProfession" required>
                 <option selected="selected" disabled="disabled" value="">Sélectionnez une profession</option>
                 <option ng-repeat="profession in professions" value="{{profession.codeProfession}}" required>
-                    {{profession.traduction}}
+                    {{profession.description}}
                 </option>
             </select>
         </div>
@@ -47,25 +47,6 @@
             Non soumis
         </label>
         </div>
-
-        <!--
-        <div class="form-group">
-            <label for="risque">Risque:</label>
-            <select id="risqueSelect" name="risqueSelect" class="form-control">
-                <option ng-repeat="risque in risques" value="{{risque.codeRisque}}">
-                    {{risque.traduction}}
-                </option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="examen">Examen:</label>
-            <select id="examenSelect" name="examenSelect" class="form-control">
-                <option ng-repeat="examen in examens" value="{{examen.codeExamen}}">
-                    {{examen.Libelle}}
-                </option>
-            </select>
-        </div>-->
 
         <!-- date -->
         <div class="form-group">
