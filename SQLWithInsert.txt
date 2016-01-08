@@ -115,3 +115,121 @@ INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(1 A
 INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(2 AS Decimal(8, 0)), N'Programmeur')
 INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(3 AS Decimal(8, 0)), N'Auditeur')
 INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(4 AS Decimal(8, 0)), N'Testeur')
+=======
+CREATE TABLE [BD].[Emploi] (
+    [idEmploi]         INT         IDENTITY (1, 1) NOT NULL,
+    [dateEntree]       DATE        NOT NULL,
+    [dateSortie]       DATE        NULL,
+    [soumis]           CHAR (1)    NOT NULL,
+    [numeroEntreprise] NUMERIC (8) NOT NULL,
+    [codeProfession]   NUMERIC (8) NOT NULL,
+    [idPersonne]       INT         NOT NULL,
+    CONSTRAINT [ID_Emploi_ID] PRIMARY KEY CLUSTERED ([idEmploi] ASC),
+    CONSTRAINT [FKtravail_FK] FOREIGN KEY ([numeroEntreprise]) REFERENCES [BD].[Entreprise] ([numeroEntreprise]),
+    CONSTRAINT [FKconcerne_FK] FOREIGN KEY ([codeProfession]) REFERENCES [BD].[Profession] ([codeProfession]),
+    CONSTRAINT [FKaffectation_FK] FOREIGN KEY ([idPersonne]) REFERENCES [BD].[Personne] ([idPersonne]),
+    CONSTRAINT [CK_Emploi_dateSortie] CHECK ([dateSortie] IS NULL OR [dateSortie] IS NOT NULL AND [dateSortie]>=[dateEntree])
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [ID_Emploi_IND]
+    ON [BD].[Emploi]([idEmploi] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [FKtravail_IND]
+    ON [BD].[Emploi]([numeroEntreprise] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [FKconcerne_IND]
+    ON [BD].[Emploi]([codeProfession] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [FKaffectation_IND]
+    ON [BD].[Emploi]([idPersonne] ASC);
+
+
+
+CREATE TABLE [BD].[Entreprise] (
+    [numeroEntreprise]        NUMERIC (8)   NOT NULL,
+    [denomination]            VARCHAR (52)  NOT NULL,
+    [adresse]                 VARCHAR (128) NOT NULL,
+    [numtel]                  VARCHAR (50)  NOT NULL,
+    [nbTravailleursSoumis]    NUMERIC (8)   NOT NULL,
+    [nbTravailleursNonSoumis] NUMERIC (8)   NOT NULL,
+    CONSTRAINT [ID_Entreprise_ID] PRIMARY KEY CLUSTERED ([numeroEntreprise] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [ID_Entreprise_IND]
+    ON [BD].[Entreprise]([numeroEntreprise] ASC);
+
+
+
+CREATE TABLE [BD].[Personne] (
+    [idPersonne]   INT           IDENTITY (1, 1) NOT NULL,
+    [name]         VARCHAR (128) NOT NULL,
+    [lastName]     VARCHAR (128) NOT NULL,
+    [adresse]      VARCHAR (128) NOT NULL,
+    [numTel]       VARCHAR (50)  NOT NULL,
+    [email]        VARCHAR (52)  NOT NULL,
+    [numDossier]   NUMERIC (12)  NULL,
+    [typePersonne] CHAR (1)      NOT NULL,
+    CONSTRAINT [ID_Personne_ID] PRIMARY KEY CLUSTERED ([idPersonne] ASC),
+    CONSTRAINT [CK_Personne_numDossier] CHECK ([numDossier] IS NULL OR [numDossier] IS NOT NULL AND [numDossier]>(0)),
+    CONSTRAINT [CK_Personne_typePersonne] CHECK ([typePersonne]='T' OR [typePersonne]='M' OR [typePersonne]='A')
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [ID_Personne_IND]
+    ON [BD].[Personne]([idPersonne] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [Unique_mail]
+    ON [BD].[Personne]([email] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [Unique_numDossier]
+    ON [BD].[Personne]([numDossier] ASC) WHERE ([numDossier] IS NOT NULL);
+
+
+
+CREATE TABLE [BD].[Profession] (
+    [codeProfession] NUMERIC (8)  NOT NULL,
+    [description]    VARCHAR (50) DEFAULT ('') NOT NULL,
+    CONSTRAINT [ID_Profession_ID] PRIMARY KEY CLUSTERED ([codeProfession] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [ID_Profession_IND]
+    ON [BD].[Profession]([codeProfession] ASC);
+
+
+
+INSERT INTO [BD].[Entreprise] ([numeroEntreprise], [denomination], [adresse], [numtel], [nbTravailleursSoumis], [nbTravailleursNonSoumis]) VALUES (CAST(1 AS Decimal(8, 0)), N'Henallux', N'Rue Joseph Calozet 19, Namur', N'0032123123', CAST(150 AS Decimal(8, 0)), CAST(45 AS Decimal(8, 0)))
+INSERT INTO [BD].[Entreprise] ([numeroEntreprise], [denomination], [adresse], [numtel], [nbTravailleursSoumis], [nbTravailleursNonSoumis]) VALUES (CAST(2 AS Decimal(8, 0)), N'Google', N'345 Spear Street, San Fransisco', N'987654321', CAST(6021 AS Decimal(8, 0)), CAST(1200 AS Decimal(8, 0)))
+INSERT INTO [BD].[Entreprise] ([numeroEntreprise], [denomination], [adresse], [numtel], [nbTravailleursSoumis], [nbTravailleursNonSoumis]) VALUES (CAST(3 AS Decimal(8, 0)), N'UNamur', N'Rue de Bruxelles, 61 Namur', N'00321594826', CAST(232 AS Decimal(8, 0)), CAST(12 AS Decimal(8, 0)))
+
+
+SET IDENTITY_INSERT [BD].[Personne] ON
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (1, N'Aurélien', N'Muller', N'4 Rue des Prunelles', N'0032123456', N'aur@muller.be', CAST(120 AS Decimal(12, 0)), N'T')
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (2, N'Axel', N'Muller', N'4 Rue des Prunelles', N'0032456789', N'axel@muller.be', NULL, N'T')
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (5, N'Quentin', N'Miroult', N'4 Rue de Namur', N'0032999666', N'quentinmiroult@mail.be', CAST(10 AS Decimal(12, 0)), N'T')
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (9, N'Arnaud', N'Anciaux', N'54 Rue de Charleroi, Namur', N'003245916', N'arnaud@anciaux.be', CAST(457 AS Decimal(12, 0)), N'T')
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (17, N'Mahatch', N'Kerimov', N'7 Rue d''Arlon, Namur', N'0032889966', N'mah@tch.com', NULL, N'T')
+INSERT INTO [BD].[Personne] ([idPersonne], [name], [lastName], [adresse], [numTel], [email], [numDossier], [typePersonne]) VALUES (18, N'Gaetan', N'Armici', N'5 Rue du coin', N'45786', N'gaetan@armici.be', NULL, N'T')
+SET IDENTITY_INSERT [BD].[Personne] OFF
+
+
+INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(1 AS Decimal(8, 0)), N'Agent de sécurité')
+INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(2 AS Decimal(8, 0)), N'Programmeur')
+INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(3 AS Decimal(8, 0)), N'Auditeur')
+INSERT INTO [BD].[Profession] ([codeProfession], [description]) VALUES (CAST(4 AS Decimal(8, 0)), N'Testeur')
